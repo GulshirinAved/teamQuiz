@@ -33,8 +33,12 @@ class DivideTeamController extends GetxController {
   }
 
   String getHighestScoreTeam() {
-    int highestScore = teamScoreList.reduce((a, b) => a >= b ? a : b);
-    int index = teamScoreList.indexOf(highestScore);
-    return teamList[index];
+    if (teamScoreList.isEmpty) {
+      return '';
+    } else {
+      int highestScore = teamScoreList.reduce((a, b) => a >= b ? a : b);
+      int index = teamScoreList.indexOf(highestScore);
+      return teamList[index];
+    }
   }
 }

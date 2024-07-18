@@ -36,7 +36,8 @@ class Round1Screen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Obx(
-                () => Text(divideTeamController.currentTurnIndex.value == -1
+                () => Text(divideTeamController.currentTurnIndex.value == -1 ||
+                        divideTeamController.getHighestScoreTeam() != ''
                     ? 'Team ${divideTeamController.getHighestScoreTeam()} win!'
                     : ''),
               ),

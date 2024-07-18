@@ -37,7 +37,7 @@ class ChooseThemeController extends GetxController {
     resultList.add({
       'topTitle': topTitle,
       'isSkip': isSkip,
-      'score': scoreValue < maxScore ? scoreValue + score : maxScore
+      'score': scoreValue <= maxScore ? scoreValue + score : maxScore
     });
   }
 }
