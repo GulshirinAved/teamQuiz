@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class DivideTeamController extends GetxController {
   RxList teamList = ['Sharks', 'Lions'].obs;
   RxInt currentTurnIndex = 0.obs;
   RxList teamScoreList = [].obs;
+
   void addTeam({required String name}) {
     if (name != '') {
       teamList.add(name);
@@ -37,8 +39,13 @@ class DivideTeamController extends GetxController {
       return '';
     } else {
       int highestScore = teamScoreList.reduce((a, b) => a >= b ? a : b);
-      int index = teamScoreList.indexOf(highestScore);
-      return teamList[index];
+      List<String> highestScoringTeams = [];
+      for (int i = 0; i < teamScoreList.length; i++) {
+        if (teamScoreList[i] == highestScore) {
+          highestScoringTeams.add(teamList[i]);
+        }
+      }
+      return highestScoringTeams.join(', ');
     }
   }
 }

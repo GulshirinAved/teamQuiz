@@ -54,6 +54,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void dispose() {
     _pageController.dispose();
+    timerController.onClose();
     advancedPlayer.dispose();
     super.dispose();
   }
@@ -165,75 +166,75 @@ class _QuizScreenState extends State<QuizScreen> {
                 );
               }),
             ),
-            Padding(
-              padding: EdgeInsets.only(right: 8, left: 8, top: 300.h),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: CustomButton(
-                      onTap: () {
-                        if (timerController.seconds.value == 0 ||
-                            chooseThemeController.scoreValue.value ==
-                                int.parse(scoreRound[
-                                    setUpRoundController.scoreValue.value])) {
-                          divideTeamController.addTeamScore(
-                            score: chooseThemeController.scoreValue.value
-                                .toString(),
-                          );
-                          advancedPlayer.stop();
-                          Get.to(() => ResultScreen());
-                        } else {
-                          nextPage();
-                          chooseThemeController.checking(
-                            topTitle: chooseThemeController
-                                .collectedItems[currentIndex],
-                            maxScore: int.parse(
-                              scoreRound[setUpRoundController.scoreValue.value],
-                            ),
-                            score: 0,
-                            isSkip: true,
-                          );
-                        }
-                      },
-                      text: 'Skip',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 15.w,
-                  ),
-                  Expanded(
-                    child: CustomButton(
-                      onTap: () {
-                        if (timerController.seconds.value == 0 ||
-                            chooseThemeController.scoreValue.value ==
-                                int.parse(scoreRound[
-                                    setUpRoundController.scoreValue.value])) {
-                          divideTeamController.addTeamScore(
-                            score: chooseThemeController.scoreValue.value
-                                .toString(),
-                          );
-                          advancedPlayer.stop();
-                          Get.to(() => ResultScreen());
-                        } else {
-                          nextPage();
-                          chooseThemeController.checking(
-                            topTitle: chooseThemeController
-                                .collectedItems[currentIndex],
-                            maxScore: int.parse(
-                              scoreRound[setUpRoundController.scoreValue.value],
-                            ),
-                            score: 2,
-                            isSkip: false,
-                          );
-                        }
-                      },
-                      text: 'Guess',
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ],
+        ),
+        bottomSheet: Padding(
+          padding: EdgeInsets.all(8),
+          child: Row(
+            children: [
+              Expanded(
+                child: CustomButton(
+                  onTap: () {
+                    if (timerController.seconds.value == 0 ||
+                        chooseThemeController.scoreValue.value ==
+                            int.parse(scoreRound[
+                                setUpRoundController.scoreValue.value])) {
+                      divideTeamController.addTeamScore(
+                        score:
+                            chooseThemeController.scoreValue.value.toString(),
+                      );
+                      advancedPlayer.stop();
+                      Get.to(() => ResultScreen());
+                    } else {
+                      nextPage();
+                      chooseThemeController.checking(
+                        topTitle:
+                            chooseThemeController.collectedItems[currentIndex],
+                        maxScore: int.parse(
+                          scoreRound[setUpRoundController.scoreValue.value],
+                        ),
+                        score: 0,
+                        isSkip: true,
+                      );
+                    }
+                  },
+                  text: 'Skip',
+                ),
+              ),
+              SizedBox(
+                width: 15.w,
+              ),
+              Expanded(
+                child: CustomButton(
+                  onTap: () {
+                    if (timerController.seconds.value == 0 ||
+                        chooseThemeController.scoreValue.value ==
+                            int.parse(scoreRound[
+                                setUpRoundController.scoreValue.value])) {
+                      divideTeamController.addTeamScore(
+                        score:
+                            chooseThemeController.scoreValue.value.toString(),
+                      );
+                      advancedPlayer.stop();
+                      Get.to(() => ResultScreen());
+                    } else {
+                      nextPage();
+                      chooseThemeController.checking(
+                        topTitle:
+                            chooseThemeController.collectedItems[currentIndex],
+                        maxScore: int.parse(
+                          scoreRound[setUpRoundController.scoreValue.value],
+                        ),
+                        score: 2,
+                        isSkip: false,
+                      );
+                    }
+                  },
+                  text: 'Guess',
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

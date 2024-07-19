@@ -83,16 +83,16 @@ class SetUpRoundScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 280.h, left: 10.w, right: 10.w),
-            child: CustomButton(
-              text: 'Next Step',
-              onTap: () {
-                Get.to(() => const Round1Screen());
-              },
-            ),
-          )
         ],
+      ),
+      bottomSheet: Padding(
+        padding: EdgeInsets.only(top: 280.h, left: 10.w, right: 10.w),
+        child: CustomButton(
+          text: 'Next Step',
+          onTap: () {
+            Get.to(() => const Round1Screen());
+          },
+        ),
       ),
     );
   }

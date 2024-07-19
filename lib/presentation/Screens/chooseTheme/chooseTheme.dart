@@ -111,25 +111,25 @@ class ChooseThemeScreen extends StatelessWidget {
                       ),
                     )),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CustomButton(
-              text: 'Next Step',
-              onTap: () {
-                chooseThemeController.collectItemsFromSelectedThemes();
-                chooseThemeController.selectedThemeList.isEmpty
-                    ? Get.snackbar(
-                        'Error',
-                        'It is empty, please add a team',
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        colorText: Colors.white,
-                      )
-                    : Get.to(() => const SetUpRoundScreen());
-              },
-            ),
-          )
         ],
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomButton(
+          text: 'Next Step',
+          onTap: () {
+            chooseThemeController.collectItemsFromSelectedThemes();
+            chooseThemeController.selectedThemeList.isEmpty
+                ? Get.snackbar(
+                    'Error',
+                    'It is empty, please add a team',
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  )
+                : Get.to(() => const SetUpRoundScreen());
+          },
+        ),
       ),
     );
   }

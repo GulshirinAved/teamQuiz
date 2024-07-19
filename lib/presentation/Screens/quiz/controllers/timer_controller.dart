@@ -9,13 +9,13 @@ class TimerController extends GetxController {
   Timer? timer;
 
   void startTimer(int duration) {
-    if (!play.value) {
-      seconds.value = duration;
-    }
+    if (timer?.isActive ?? false)
+      return; // Prevent starting a new timer if one is already active
+    seconds.value = duration;
+    play.value = true;
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (seconds.value > 0) {
         seconds.value--;
-        play.value = true;
       } else {
         timer.cancel();
         play.value = false;
@@ -24,6 +24,8 @@ class TimerController extends GetxController {
   }
 
   void resumeTimer() {
+    if (timer?.isActive ?? false)
+      return; // Prevent resuming a new timer if one is already active
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (seconds.value > 0) {
         seconds.value--;
@@ -37,13 +39,18 @@ class TimerController extends GetxController {
 
   void stopTimer() {
     timer?.cancel();
+    timer = null;
     play.value = false;
+  }
+
+  void resetTimer(int duration) {
+    stopTimer();
+    startTimer(duration);
   }
 
   @override
   void onClose() {
-    timer?.cancel();
-    play.value = false;
+    stopTimer();
     super.onClose();
   }
 }

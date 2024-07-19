@@ -55,16 +55,16 @@ class ResultScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomButton(
-                  onTap: () {
-                    Get.to(() => Round1Screen());
-                  },
-                  text: 'Continue'),
-            )
           ],
         ),
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomButton(
+            onTap: () {
+              Get.to(() => Round1Screen());
+            },
+            text: 'Continue'),
       ),
     );
   }

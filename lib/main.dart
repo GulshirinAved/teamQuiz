@@ -15,6 +15,9 @@ void main() {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         scaffoldBackgroundColor: AppColors.redColor,
+        bottomSheetTheme: BottomSheetThemeData(
+            backgroundColor: AppColors.redColor,
+            surfaceTintColor: AppColors.redColor),
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.redColor,
           elevation: 0,
